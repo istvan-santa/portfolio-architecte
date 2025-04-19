@@ -7,43 +7,49 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
+	<meta name="description" content="Portfolio d'architecte d'intérieur de Sophie Bluel">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+
+<!-- Bande admin (si connectée) -->
+<div class="admin-banner hidden">🖉 Mode édition</div>
+
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			<li><a href="#portfolio">projets</a></li>
+			<li><a href="#contact">contact</a></li>
+			<li><a href="login.html" id="login">login</a></li>
+			<li><a href="#" id="logout" class="hidden">logout</a></li>
 		</ul>
 	</nav>
 </header>
+
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel, architecte d'intérieur">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			<p>En cas de besoin, une équipe pluridisciplinaire peut être constituée : architecte DPLG, décorateur(trice)...</p>
 		</article>
 	</section>
+
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<button id="open-modal" class="modify-btn">Modifier</button>
-		<div class="gallery">
-			<!-- Contenu dynamique ajouté via JavaScript -->
-		</div>
-		<div class="filters">
-			<!-- Boutons de filtres ajoutés via JavaScript -->
-		</div>
+		<div class="portfolio-header">
+			<h2>Mes Projets</h2>
+			<img src="assets/icons/edit.svg" alt="modifier" class="icon-edit hidden" id="open-modal">
+		  </div>
+		  
+		<div class="filters"></div>
+		<div class="gallery"></div>
 	</section>
+
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
@@ -67,51 +73,44 @@
 	</nav>
 </footer>
 
+<!-- Modale galerie -->
 <div id="modal" class="hidden modal">
-    <div class="modal-content" >
-        <button id="close-modal" class="close-btn">&times;</button>
-        <!-- Vue Galerie Photo -->
-        <div id="modal-gallery">
-            <h2>Galerie Photo</h2>
-            <div id="gallery-content">
-                <!-- Les projets existants seront affichés ici -->
-            </div>
-            <button id="add-photo-btn" class="modal-action-btn">Ajouter une photo</button>
-        </div>
-        <!-- Vue Ajout Photo -->
-		<div id="modal-add-photo" class="hidden">
-			<!-- Flèche pour revenir à la galerie -->
-			<button id="back-arrow" class="back-btn">&larr;</button>
-			<!-- Croissance pour fermer la modale -->
-			<button id="close-modal" class="close-btn">&times;</button>
-			<!-- Contenu principal -->
-			<h2>Ajout photo</h2>
-			<div id="photo-preview" class="photo-preview">
-				<label for="photo-file" class="upload-area">
-					<img src="assets/images/image.png" alt="Image par défaut" class="default-icon">
-					<p>+ Ajouter photo</p>
-					<small>jpg, png : 4mo max</small>
-				</label>
-				<input type="file" id="photo-file" name="file" accept="image/png, image/jpeg" class="hidden">
-			</div>
-			<form id="add-photo-form">
-				<label for="photo-title">Titre</label>
-				<input type="text" id="photo-title" name="title" placeholder="Entrez le titre" required>
-				<label for="photo-category">Catégorie</label>
-				<select id="photo-category" name="category" required>
-					<option value="" disabled selected>Choisir une catégorie</option>
-					<!-- Les options seront ajoutées dynamiquement -->
-				</select>
-				<button type="submit" id="validate-btn" class="validate-btn disabled" disabled>Valider</button>
-			</form>
+	<div class="modal-content">
+		<button id="close-modal" class="close-btn">&times;</button>
+		<div id="modal-gallery">
+			<h2>Galerie Photo</h2>
+			<div id="gallery-content"></div>
+			<button id="add-photo-btn" class="modal-action-btn">Ajouter une photo</button>
 		</div>
-            </form>
-        </div>
-    </div>
+	</div>
 </div>
 
-<!-- Charger le script JavaScript -->
-<script src="main.js"></script>
+<!-- Modale ajout photo -->
+<div id="modal-add-photo" class="hidden modal">
+	<div class="modal-content">
+		<button id="back-arrow" class="back-btn">&larr;</button>
+		<button id="close-modal-2" class="close-btn">&times;</button>
+		<h2>Ajout photo</h2>
+		<div id="photo-preview" class="photo-preview">
+			<label for="photo-file" class="upload-area">
+				<img src="assets/images/image.png" alt="Image par défaut" class="default-icon">
+				<p>+ Ajouter photo</p>
+				<small>jpg, png : 4mo max</small>
+			</label>
+			<input type="file" id="photo-file" name="file" accept="image/png, image/jpeg" class="hidden">
+		</div>
+		<form id="add-photo-form">
+			<label for="photo-title">Titre</label>
+			<input type="text" id="photo-title" name="title" placeholder="Entrez le titre" required>
+			<label for="photo-category">Catégorie</label>
+			<select id="photo-category" name="category" required>
+				<option value="" disabled selected>Choisir une catégorie</option>
+			</select>
+			<button type="submit" id="validate-btn" class="validate-btn disabled" disabled>Valider</button>
+		</form>
+	</div>
+</div>
 
+<script src="main.js"></script>
 </body>
 </html>
